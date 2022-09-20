@@ -1,0 +1,16 @@
+.detail {
+  margin: 0 !important;
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 100px;
+
+  img {
+    width: 30vw;
+    margin-bottom: 10px;
+    object-fit: cover;
+  }
+
+  &__text {
+    width: 380px !important;
+  }
+}
