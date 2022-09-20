@@ -1,7 +1,17 @@
 import logo from './logo-mos.png';
+import banner from './banner.jpeg';
+import bannerClothes from './banner-clothes.jpeg';
+import clothes1 from './clothes-1.jpeg';
+import clothes2 from './clothes-2.jpeg';
+import clothes3 from './clothes-3.jpeg';
 
 const Images = {
   LOGO: logo,
+  BANNER: banner,
+  BANNER_CLOTHES: bannerClothes,
+  CLOTHES_1: clothes1,
+  CLOTHES_2: clothes2,
+  CLOTHES_3: clothes3,
 };
 
 export default Images;
