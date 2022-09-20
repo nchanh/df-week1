@@ -1,19 +1,22 @@
-import './App.css';
+import './App.scss';
 import { publicRoutes } from './routes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          {publicRoutes.map((route, i) => {
-            const Page = route.component;
+      <Layout>
+        <div className="app">
+          <Routes>
+            {publicRoutes.map((route, i) => {
+              const Page = route.component;
 
-            return <Route key={i} path={route.path} element={<Page />} />;
-          })}
-        </Routes>
-      </div>
+              return <Route key={i} path={route.path} element={<Page />} />;
+            })}
+          </Routes>
+        </div>
+      </Layout>
     </Router>
   );
 }

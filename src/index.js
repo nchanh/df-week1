@@ -7,12 +7,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './state/store';
+import GlobalStyles from './components/GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
     </Provider>
   </React.StrictMode>
 );

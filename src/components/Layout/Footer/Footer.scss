@@ -1,0 +1,30 @@
+.footer {
+  padding: 0 3vw;
+
+  &__bar {
+    padding: 1vw 0;
+    border-top: 1px solid var(--color-grey);
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      input {
+        height: 30px;
+        width: 20vwg;
+        border: none;
+        border-bottom: 1px solid var(--color-grey);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        height: 29.5px;
+        background: none;
+        border: none;
+        border-bottom: solid 1px var(--color-grey);
+      }
+    }
+  }
+}
