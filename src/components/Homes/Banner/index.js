@@ -23,7 +23,7 @@ function Banner() {
     const alt = `clothes ${item.id}`;
 
     return (
-      <Col sm="12" md="4" lg="4" className={classes}>
+      <Col key={item.id} sm="12" md="4" lg="4" className={classes}>
         <img src={item.src} alt={alt} />
       </Col>
     );
