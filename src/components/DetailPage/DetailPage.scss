@@ -12,5 +12,23 @@
 
   &__text {
     width: 380px !important;
+
+    &__size {
+      border-radius: 0 !important;
+    }
+
+    &__btn-add-cart {
+      margin: 15px 0;
+      width: 100%;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      height: 48px;
+      border: 0;
+      font-size: 13px;
+    }
+
+    &__file-size {
+      margin-top: 50px;
+    }
   }
 }

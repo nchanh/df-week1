@@ -26,6 +26,7 @@ function NavbarItems(props) {
             return (
               <NavItem key={item.id} className="navbar__item">
                 {element}
+                {item.isCart && <span className="badge-custom">5</span>}
               </NavItem>
             );
           })}

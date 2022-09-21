@@ -1,15 +1,32 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Col, Row } from 'reactstrap';
+import { Col, Input, Row } from 'reactstrap';
+import Images from '../../assets/images';
+import { convertNameSize } from '../../helpers/function';
 
 import { addToCart } from '../../state/cart/cartActions';
 import CategoryProducts from '../CategoryProducts';
 import './DetailPage.scss';
 
-function DetailPage({ productId, product, products }) {
+function DetailPage({ product, products }) {
+  const [size, setSize] = useState('small');
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    const order = {
+      productId: product.id,
+      quantity: 1,
+      price: product.price,
+      size: size,
+    };
+    dispatch(addToCart(order));
+  };
+
+  const getQuantity = () => {
+    const objSize = Object.entries(product.sizes).find(
+      ([key, value]) => key === size
+    );
+    return objSize[1];
   };
 
   return (
@@ -29,12 +46,34 @@ function DetailPage({ productId, product, products }) {
         <Col sm="12" md="4" lg="4" className="detail__text text-start">
           <p>{product.categoryName}</p>
           <h3>{product.title}</h3>
-          <p>{product.price}</p>
-          <p>color/size</p>
-          <button onClick={handleAddToCart}>ADD TO CART</button>
+          <p>
+            ${product.price} / Color: {product.color} / Quantity:{' '}
+            {getQuantity()}
+          </p>
+          <Input
+            type="select"
+            className="detail__text__size"
+            onChange={(e) => setSize(e.target.value)}
+          >
+            {Object.entries(product.sizes).map(([key, value], i) => (
+              <option key={i} value={key}>
+                {convertNameSize(key)}
+              </option>
+            ))}
+          </Input>
+          <button
+            className="detail__text__btn-add-cart"
+            onClick={handleAddToCart}
+          >
+            ADD TO CART
+          </button>
           <p>{product.describe}</p>
           <h6>Details:</h6>
           {product && product.detail.map((item, i) => <li key={i}>{item}</li>)}
+
+          <div className="detail__text__file-size">
+            <img src={Images.FILE_SIZE} alt="file-size" />
+          </div>
         </Col>
       </Row>
 

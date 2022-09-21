@@ -17,13 +17,9 @@ function DetailProduct() {
     };
 
     fetchGetProduct();
-  }, []);
+  }, [productId]);
 
-  return (
-    product && (
-      <DetailPage productId={productId} product={product} products={products} />
-    )
-  );
+  return product && <DetailPage product={product} products={products} />;
 }
 
 export default DetailProduct;

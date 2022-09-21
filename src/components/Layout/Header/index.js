@@ -11,9 +11,9 @@ const HEADER_FIRST = [
 ];
 
 const HEADER_LAST = [
-  { id: 1, name: 'Search', to: '/' },
-  { id: 2, name: 'Account', to: '/' },
-  { id: 3, name: 'Cart', to: '/' },
+  { id: 1, name: 'SEARCH', to: '/' },
+  { id: 2, name: 'ACCOUNT', to: '/' },
+  { id: 3, name: 'CART', to: '/', isCart: true },
 ];
 
 function Header() {
