@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import Images from '../../../assets/images';
 import NavbarItems from '../NavbarItems';
-import { useSelector } from 'react-redux';
 
 const HEADER_FIRST = [
   { id: 1, name: 'MYSTERY' },
@@ -18,9 +17,6 @@ const HEADER_LAST = [
 ];
 
 function Header() {
-  const state = useSelector((state) => state);
-  console.log(state);
-
   return (
     <div className="header">
       <div className="header__bar">

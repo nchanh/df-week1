@@ -4,7 +4,7 @@ import NotFound from '../pages/NotFound';
 
 const publicRoutes = [
   { path: '/', component: Home },
-  { path: '/post/:slug', component: DetailProduct },
+  { path: '/product/:productId', component: DetailProduct },
   { path: '*', component: NotFound },
 ];
 
