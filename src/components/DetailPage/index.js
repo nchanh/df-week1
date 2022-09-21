@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
+import { addToCart } from '../../state/cart/cartActions';
 import CategoryProducts from '../CategoryProducts';
 import './DetailPage.scss';
 
@@ -117,6 +119,8 @@ function DetailPage() {
   const product = PRODUCT_DETAIL;
   const products = PRODUCTS;
 
+  const dispatch = useDispatch();
+
   const renderProductDetail = (detail) => {
     const details = detail.split(';');
 
@@ -127,6 +131,10 @@ function DetailPage() {
         ))}
       </ul>
     );
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
   };
 
   return (
@@ -146,7 +154,7 @@ function DetailPage() {
             {product.price}
           </p>
           <p>color/size</p>
-          <button>ADD TO CART</button>
+          <button onClick={handleAddToCart}>ADD TO CART</button>
           <p>{product.describe}</p>
           <h6>Details:</h6>
           {renderProductDetail(product.detail)}
