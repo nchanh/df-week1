@@ -12,10 +12,3 @@ export const convertNameSize = (size) => {
       return size;
   }
 };
-
-export const getQuantity = (product, size) => {
-  const objSize = Object.entries(product.sizes).find(
-    ([key, value]) => key === size
-  );
-  return objSize[1];
-};

@@ -22,13 +22,6 @@ function DetailPage({ product, products }) {
     dispatch(addToCart(order));
   };
 
-  const getQuantity = () => {
-    const objSize = Object.entries(product.sizes).find(
-      ([key, value]) => key === size
-    );
-    return objSize[1];
-  };
-
   return (
     <div className="text-start">
       <Row className="detail">
@@ -47,17 +40,16 @@ function DetailPage({ product, products }) {
           <p>{product.categoryName}</p>
           <h3>{product.title}</h3>
           <p>
-            ${product.price} / Color: {product.color} / Quantity:{' '}
-            {getQuantity()}
+            ${product.price} / Color: {product.color}
           </p>
           <Input
             type="select"
             className="detail__text__size"
             onChange={(e) => setSize(e.target.value)}
           >
-            {Object.entries(product.sizes).map(([key, value], i) => (
-              <option key={i} value={key}>
-                {convertNameSize(key)}
+            {product.sizes.map((item, i) => (
+              <option key={i} value={item}>
+                {convertNameSize(item)}
               </option>
             ))}
           </Input>
