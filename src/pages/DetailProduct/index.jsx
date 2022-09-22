@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import DetailPage from '../../components/DetailPage';
-import * as productService from '../../services/ProductService';
 
 function DetailProduct() {
   const products = useSelector((state) => state.product.products);
@@ -12,12 +11,14 @@ function DetailProduct() {
 
   useEffect(() => {
     const fetchGetProduct = async () => {
-      const _products = await productService.getProduct(productId);
+      // const _products = await productService.getProduct(productId);
+
+      const _products = products.find((item) => item.id === productId);
       setProduct(_products);
     };
 
     fetchGetProduct();
-  }, [productId]);
+  }, [productId, products]);
 
   return product && <DetailPage product={product} products={products} />;
 }

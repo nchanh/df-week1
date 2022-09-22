@@ -15,10 +15,11 @@ import {
 } from '../../state/cart/cartActions';
 import './ListCarts.scss';
 
-function ListCarts({ name }) {
+function ListCarts({ name, isCart }) {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cart.carts);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const _numberOrders = useSelector((state) => state.cart.numberOrders);
   const [visible, setVisible] = useState(false);
 
   const handleToggle = () => setVisible(!visible);
@@ -40,6 +41,9 @@ function ListCarts({ name }) {
       <span className="list-cart__btn-cart" onClick={handleToggle}>
         {name}
       </span>
+      {_numberOrders > 0 && isCart && (
+        <span className="badge-custom">{_numberOrders}</span>
+      )}
       <Offcanvas
         isOpen={visible}
         direction="end"

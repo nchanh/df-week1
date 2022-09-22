@@ -6,15 +6,17 @@ import { useEffect } from 'react';
 import * as productService from './services/ProductService';
 import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
+import { PRODUCTS } from './components/constants/data';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchGetAllProducts = async () => {
-      console.log('call');
-      const _products = await productService.getAllProducts();
-      dispatch(addProducts(_products));
+      // const _products = await productService.getAllProducts();
+      // dispatch(addProducts(_products));
+
+      dispatch(addProducts(PRODUCTS));
     };
 
     fetchGetAllProducts();

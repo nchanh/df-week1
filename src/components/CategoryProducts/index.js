@@ -32,12 +32,7 @@ function CategoryProducts({ products, numberProducts = 8 }) {
                 onClick={() => handleClickProduct(item.id)}
                 className="category-product__detail"
               >
-                <img
-                  src={
-                    item.images[0].url + '/' + Math.trunc(Math.random() * 9999)
-                  }
-                  alt={item.title}
-                />
+                <img src={item.images[0].url} alt={item.title} />
                 <div className={classesInfo(i)}>
                   <h3>{item.brand}</h3>
                   <h4>{item.title}</h4>

@@ -32,11 +32,7 @@ function DetailPage({ product, products }) {
         <Col sm="12" md="4" lg="4">
           {product &&
             product.images.map((item, i) => (
-              <img
-                key={i}
-                src={item.url + '/' + Math.trunc(Math.random() * 9999)}
-                alt={item.title}
-              />
+              <img key={i} src={item.url} alt={item.title} />
             ))}
         </Col>
         <Col sm="12" md="4" lg="4" className="detail__text text-start">
