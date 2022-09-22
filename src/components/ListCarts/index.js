@@ -8,7 +8,11 @@ import {
   Row,
 } from 'reactstrap';
 import { convertNameSize } from '../../helpers/function';
-import { removeProductCart } from '../../state/cart/cartActions';
+import {
+  decreaseProduct,
+  increaseProduct,
+  removeProductCart,
+} from '../../state/cart/cartActions';
 import './ListCarts.scss';
 
 function ListCarts({ name }) {
@@ -20,11 +24,11 @@ function ListCarts({ name }) {
   const handleToggle = () => setVisible(!visible);
 
   const handleIncrease = (productId) => {
-    console.log(productId);
+    dispatch(increaseProduct(productId));
   };
 
   const handleDecrease = (productId) => {
-    console.log(productId);
+    dispatch(decreaseProduct(productId));
   };
 
   const handleRemove = (productId) => {
