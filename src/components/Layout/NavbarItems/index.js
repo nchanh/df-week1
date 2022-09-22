@@ -26,7 +26,7 @@ function NavbarItems(props) {
                 </a>
               );
             } else if (item.isCart) {
-              element = <ListCarts />;
+              element = <ListCarts name={item.name} />;
             }
 
             return (

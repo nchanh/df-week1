@@ -8,8 +8,8 @@ import fileSize from './file-size.png';
 
 const Images = {
   LOGO: logo,
-  BANNER: banner,
-  BANNER_CLOTHES: bannerClothes,
+  BANNER_CLOTHES: banner,
+  BANNER: bannerClothes,
   CLOTHES_1: clothes1,
   CLOTHES_2: clothes2,
   CLOTHES_3: clothes3,

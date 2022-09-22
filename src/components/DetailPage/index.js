@@ -18,6 +18,9 @@ function DetailPage({ product, products }) {
       quantity: 1,
       price: product.price,
       size: size,
+      title: product.title,
+      color: product.color,
+      image: product.images[0].url,
     };
     dispatch(addToCart(order));
   };
