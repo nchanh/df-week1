@@ -17,7 +17,7 @@ function CategoryProducts({ products, numberProducts = 8 }) {
   };
 
   return (
-    <Row className="category-product">
+    <Row className="category-product mx-0">
       {products &&
         products.map((item, i) => {
           return (

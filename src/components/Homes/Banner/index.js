@@ -32,7 +32,7 @@ function Banner() {
   return (
     <div className="banner">
       <img src={Images.BANNER_CLOTHES} alt="home-banner" />
-      <Row className="banner__clothes">{element}</Row>
+      <Row className="banner__clothes mx-0">{element}</Row>
     </div>
   );
 }
