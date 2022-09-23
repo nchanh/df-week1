@@ -1,3 +1,7 @@
+@import '../../../styles/variables.scss';
+
+$heigh-header: 5vw;
+
 .header {
   position: fixed;
   top: 0;
@@ -12,8 +16,16 @@
     align-items: center;
     position: relative;
     z-index: 100;
-    height: 5vw;
+    height: $heigh-header;
     padding: 0 3vw;
+
+    @include mobile {
+      height: $heigh-header * 5;
+    }
+
+    @include tablet {
+      height: $heigh-header * 3;
+    }
 
     &__middle {
       img {
@@ -21,4 +33,9 @@
       }
     }
   }
+}
+
+.css-scroll {
+  transition: all 0.4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }

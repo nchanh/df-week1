@@ -22,7 +22,7 @@ function SearchUI({ query, products }) {
         setIsLoading(false);
       }, 1000);
     }
-  }, []);
+  }, [query]);
 
   return (
     <div className="search">

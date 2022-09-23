@@ -1,0 +1,96 @@
+@import '../../styles/variables.scss';
+
+@mixin textButton() {
+  color: var(--color-grey);
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.login {
+  &__wrapper {
+    text-transform: uppercase;
+    padding: 10% 300px 0 300px;
+
+    @include mobile {
+      padding: 0;
+    }
+
+    @include tablet {
+      padding: 0;
+    }
+
+    &__text-error {
+      color: var(--color-red);
+      font-size: 11px;
+      letter-spacing: 0.06rem;
+    }
+
+    input {
+      border-radius: 0;
+      font-weight: 200;
+      letter-spacing: 0.06rem;
+      font-size: 12px;
+      margin-bottom: 15px;
+      padding: 13px;
+    }
+
+    &__title {
+      letter-spacing: 0.07rem;
+      color: var(--color-grey);
+      padding-bottom: 15px;
+    }
+
+    &__btn_submit {
+      button {
+        width: 100%;
+        border-radius: 0;
+        background-color: transparent;
+        text-transform: uppercase;
+        padding: 10px;
+        border: 1px solid var(--color-black);
+        transition: all 0.6s ease;
+
+        @include textButton;
+
+        &:hover {
+          background-color: var(--color-black);
+          color: var(--color-white);
+        }
+      }
+    }
+
+    &__forgot_pw {
+      margin-top: 10px;
+      margin-bottom: 40px;
+
+      a {
+        font-size: 11px;
+        color: var(--color-grey);
+        text-decoration: none;
+
+        &:hover {
+          opacity: 0.7;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__register {
+      a {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--color-black);
+        padding: 10px;
+        text-decoration: none;
+        transition: all 0.6s ease;
+
+        @include textButton;
+
+        &:hover {
+          background-color: var(--color-black);
+          color: var(--color-white);
+        }
+      }
+    }
+  }
+}
