@@ -41,11 +41,7 @@ function ListCarts({ name, isCart }) {
   };
 
   const handleClickCheckout = () => {
-    if (isDisabledCheckout) {
-      return;
-    }
-
-    if (isSubmit) {
+    if (isDisabledCheckout || isSubmit || _numberOrders === 0) {
       return;
     }
 
