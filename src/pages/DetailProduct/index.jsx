@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Col, Row, Spinner } from 'reactstrap';
 import DetailPage from '../../components/DetailPage';
 import * as productService from '../../services/ProductService';
 
 function DetailProduct() {
   const products = useSelector((state) => state.product.products);
   const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   let { productId } = useParams();
 
@@ -26,7 +28,23 @@ function DetailProduct() {
     fetchGetProduct();
   }, [productId, products]);
 
-  return product && <DetailPage product={product} products={products} />;
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  return product && !isLoading ? (
+    <DetailPage product={product} products={products} />
+  ) : (
+    <Row className="mx-0">
+      <Col className="text-center mt-5">
+        <Spinner color="dark">Loading...</Spinner>
+      </Col>
+    </Row>
+  );
 }
 
 export default DetailProduct;

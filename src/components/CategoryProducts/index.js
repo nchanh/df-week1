@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
 import './CategoryProducts.scss';
 
-function CategoryProducts({ products, numberProducts = 8 }) {
+function CategoryProducts({ products, numberProducts = 16 }) {
   const navigate = useNavigate();
 
   const [isActive, setIsActive] = useState(-1);
@@ -28,7 +28,7 @@ function CategoryProducts({ products, numberProducts = 8 }) {
                 md="6"
                 lg="3"
                 onMouseOver={() => setIsActive(i)}
-                onMouseOut={() => setIsActive(i)}
+                onMouseOut={() => setIsActive(-1)}
                 onClick={() => handleClickProduct(item.id)}
                 className="category-product__detail"
               >

@@ -1,15 +1,29 @@
+import { useEffect, useState } from 'react';
 import {
   Col,
   Pagination,
   PaginationItem,
   PaginationLink,
   Row,
+  Spinner,
 } from 'reactstrap';
 import CategoryProducts from '../CategoryProducts';
 
 import './SearchUI.scss';
 
 function SearchUI({ query, products }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (query) {
+      setIsLoading(true);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, []);
+
   return (
     <div className="search">
       <Row className="search__input mx-0">
@@ -35,11 +49,17 @@ function SearchUI({ query, products }) {
               SORRY, NO PRODUCTS MATCHED THE KEYWORD
             </Col>
           </Row>
+        ) : isLoading ? (
+          <Row>
+            <Col className="text-center mt-4">
+              <Spinner color="dark">Loading...</Spinner>
+            </Col>
+          </Row>
         ) : (
           <CategoryProducts products={products} numberProducts={24} />
         )}
       </Row>
-      {products.length > 0 && (
+      {products.length > 0 && !isLoading && (
         <Row className="mx-0 mt-5">
           <Col className="text-center">
             <Pagination className="custom-pagination">
