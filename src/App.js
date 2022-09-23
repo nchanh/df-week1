@@ -3,10 +3,10 @@ import { publicRoutes } from './routes';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Suspense, useEffect, useState } from 'react';
-import * as productService from './services/ProductService';
+// import * as productService from './services/ProductService';
 import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
-import { PRODUCTS } from './components/constants/data';
+import { PRODUCTS } from './constants/data';
 import Loading from './components/Loading';
 
 function App({ children }) {
