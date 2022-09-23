@@ -4,7 +4,10 @@ function Loading() {
   return (
     <div className="overlay">
       <div className="overlay__content">
-        <Spinner color="light">Loading...</Spinner>
+        <Spinner color="dark" size="sm">
+          Loading...
+        </Spinner>
+        <span>Wait a moment...</span>
       </div>
     </div>
   );

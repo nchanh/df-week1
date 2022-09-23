@@ -7,6 +7,11 @@ import ListCarts from '../../ListCarts';
 
 function NavbarItems(props) {
   const items = props.items;
+
+  const handleSrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Fragment>
       <Nav>
@@ -24,6 +29,8 @@ function NavbarItems(props) {
               );
             } else if (item.isCart) {
               element = <ListCarts name={item.name} isCart={item.isCart} />;
+            } else if (item.name === 'TOP') {
+              element = <button onClick={handleSrollToTop}>{item.name}</button>;
             }
 
             return (

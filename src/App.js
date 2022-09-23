@@ -2,7 +2,7 @@ import './App.scss';
 import { publicRoutes } from './routes';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import * as productService from './services/ProductService';
 import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
@@ -23,10 +23,17 @@ function App({ children }) {
     fetchGetAllProducts();
   });
 
+  const [scroll, setScroll] = useState(false);
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setScroll(window.scrollY > 50);
+    });
+  }, []);
+
   return (
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
-        <Layout>
+        <Layout scroll={scroll}>
           <div className="app">
             <Routes>
               {publicRoutes.map((route, i) => {

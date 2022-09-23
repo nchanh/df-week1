@@ -6,6 +6,7 @@ const FOOTER_ITEMS = [
   { id: 2, name: 'SOCIAL', href: 'https://www.facebook.com/brandmosvn' },
   { id: 3, name: 'SERVICE', to: '/service' },
   { id: 4, name: 'PRIVACY POLICY', to: '/privacy-policy' },
+  { id: 5, name: 'TOP' },
 ];
 
 function Footer() {

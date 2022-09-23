@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 function Layout(props) {
   return (
     <Fragment>
-      <Header />
+      <Header scroll={props.scroll} />
       {props.children}
       <Footer />
     </Fragment>

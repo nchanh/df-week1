@@ -16,9 +16,10 @@ const HEADER_LAST = [
   { id: 3, name: 'CART', isCart: true },
 ];
 
-function Header() {
+function Header(props) {
+  let classNames = 'header' + (props.scroll ? ' css-scroll' : '');
   return (
-    <div className="header">
+    <div className={classNames}>
       <div className="header__bar">
         <div className="header__bar__first">
           <NavbarItems items={HEADER_FIRST} />
