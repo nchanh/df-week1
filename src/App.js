@@ -1,14 +1,15 @@
 import './App.scss';
 import { publicRoutes } from './routes';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import * as productService from './services/ProductService';
 import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
 import { PRODUCTS } from './components/constants/data';
+import Loading from './components/Loading';
 
-function App() {
+function App({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,19 +24,21 @@ function App() {
   });
 
   return (
-    <Router>
-      <Layout>
-        <div className="app">
-          <Routes>
-            {publicRoutes.map((route, i) => {
-              const Page = route.component;
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Layout>
+          <div className="app">
+            <Routes>
+              {publicRoutes.map((route, i) => {
+                const Page = route.component;
 
-              return <Route key={i} path={route.path} element={<Page />} />;
-            })}
-          </Routes>
-        </div>
-      </Layout>
-    </Router>
+                return <Route key={i} path={route.path} element={<Page />} />;
+              })}
+            </Routes>
+          </div>
+        </Layout>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 

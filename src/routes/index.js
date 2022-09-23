@@ -1,7 +1,9 @@
-import DetailProduct from '../pages/DetailProduct';
-import Home from '../pages/Home';
-import NotFound from '../pages/NotFound';
-import Search from '../pages/Search';
+import React from 'react';
+
+const DetailProduct = React.lazy(() => import('../pages/DetailProduct'));
+const Home = React.lazy(() => import('../pages/Home'));
+const NotFound = React.lazy(() => import('../pages/NotFound'));
+const Search = React.lazy(() => import('../pages/Search'));
 
 const publicRoutes = [
   { path: '/', component: Home },
