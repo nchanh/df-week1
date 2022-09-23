@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Col, Input, Row } from 'reactstrap';
+import { Col, Input, Row, Spinner } from 'reactstrap';
 import Images from '../../assets/images';
 import { convertNameSize } from '../../helpers/function';
 
@@ -11,8 +11,14 @@ import './DetailPage.scss';
 function DetailPage({ product, products }) {
   const [size, setSize] = useState('small');
   const dispatch = useDispatch();
+  const [isDisabledAdd, setIsDisabledAdd] = useState(false);
 
   const handleAddToCart = () => {
+    if (isDisabledAdd) {
+      return;
+    }
+
+    setIsDisabledAdd(true);
     const order = {
       productId: product.id,
       quantity: 1,
@@ -23,6 +29,10 @@ function DetailPage({ product, products }) {
       image: product.images[0].url,
     };
     dispatch(addToCart(order));
+
+    setTimeout(() => {
+      setIsDisabledAdd(false);
+    }, 800);
   };
 
   return (
@@ -55,8 +65,15 @@ function DetailPage({ product, products }) {
           <button
             className="detail__text__btn-add-cart"
             onClick={handleAddToCart}
+            disabled={isDisabledAdd}
           >
-            ADD TO CART
+            {isDisabledAdd ? (
+              <Spinner size="sm" color="light">
+                Loading...
+              </Spinner>
+            ) : (
+              <span>ADD TO CART</span>
+            )}
           </button>
           <p>{product.describe}</p>
           <h6>Details:</h6>

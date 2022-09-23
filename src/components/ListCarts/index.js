@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Col,
+  Input,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
   Row,
+  Spinner,
 } from 'reactstrap';
 import { convertNameSize } from '../../helpers/function';
 import {
@@ -21,6 +23,8 @@ function ListCarts({ name, isCart }) {
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const _numberOrders = useSelector((state) => state.cart.numberOrders);
   const [visible, setVisible] = useState(false);
+  const [isDisabledCheckout, setIsDisabledCheckout] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleToggle = () => setVisible(!visible);
 
@@ -34,6 +38,31 @@ function ListCarts({ name, isCart }) {
 
   const handleRemove = (productId) => {
     dispatch(removeProductCart(productId));
+  };
+
+  const handleClickCheckout = () => {
+    if (isDisabledCheckout) {
+      return;
+    }
+
+    if (isSubmit) {
+      return;
+    }
+
+    setIsDisabledCheckout(true);
+
+    setTimeout(() => {
+      setIsSubmit(true);
+      setIsDisabledCheckout(false);
+    }, 800);
+  };
+
+  const handleClickCancel = () => {
+    if (isSubmit) {
+      setIsSubmit(false);
+    } else {
+      setVisible(!visible);
+    }
   };
 
   return (
@@ -129,10 +158,47 @@ function ListCarts({ name, isCart }) {
               <Col>SUBTOTAL:</Col>
               <Col className="text-end">${totalPrice}</Col>
             </Row>
+
+            {isSubmit && (
+              <div className="checkout">
+                <Row className="list-cart__offcanvas__footer__total__checkout">
+                  <Col>
+                    <Input type="text" className="" placeholder="Full name" />
+                  </Col>
+                  <Col className="text-end">
+                    <Input type="text" className="" placeholder="Email" />
+                  </Col>
+                </Row>
+
+                <Row className="list-cart__offcanvas__footer__total__checkout mt-2">
+                  <Col>
+                    <Input
+                      type="text"
+                      className=""
+                      placeholder="Phone number"
+                    />
+                  </Col>
+                  <Col className="text-end">
+                    <Input type="text" className="" placeholder="Address" />
+                  </Col>
+                </Row>
+              </div>
+            )}
+
             <Row>
               <Col>
-                <button className="list-cart__offcanvas__footer__total__btn">
-                  CHECKOUT
+                <button
+                  className="list-cart__offcanvas__footer__total__btn"
+                  onClick={handleClickCheckout}
+                  disabled={isDisabledCheckout}
+                >
+                  {isDisabledCheckout ? (
+                    <Spinner size="sm" color="light">
+                      Loading...
+                    </Spinner>
+                  ) : (
+                    <span>{isSubmit ? 'SUBMIT' : 'CHECKOUT'}</span>
+                  )}
                 </button>
               </Col>
             </Row>
@@ -140,9 +206,9 @@ function ListCarts({ name, isCart }) {
               <Col>
                 <button
                   className="list-cart__offcanvas__footer__total__btn"
-                  onClick={handleToggle}
+                  onClick={handleClickCancel}
                 >
-                  CONTINUE SHOPPING
+                  {isSubmit ? 'CANCEL' : 'CONTINUE SHOPPING'}
                 </button>
               </Col>
             </Row>

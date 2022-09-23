@@ -81,6 +81,18 @@
           margin: 15px 0;
         }
 
+        &__checkout {
+          input {
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.07rem;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+
         &__btn {
           width: 100%;
           color: white;
