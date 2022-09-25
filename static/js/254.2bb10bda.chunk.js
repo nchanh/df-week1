@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkweek1=self.webpackChunkweek1||[]).push([[254],{254:function(n,a,c){c.r(a);c(2791);var e=c(184);a.default=function(n){var a=n.className;return(0,e.jsx)("div",{className:a,children:(0,e.jsx)("img",{src:"https://cdn.tgdd.vn/hoi-dap/580732/loi-404-not-found-la-gi-9-cach-khac-phuc-loi-404-not-1-800x450.jpg",alt:"404-not-found"})})}}}]);
+//# sourceMappingURL=254.2bb10bda.chunk.js.map
