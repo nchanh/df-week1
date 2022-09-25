@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import LoginUI from '../../components/LoginUI';
 import { logOut } from '../../state/auth/authActions';
 
-function Login() {
+function Login({ className }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -11,7 +11,11 @@ function Login() {
     dispatch(logOut());
   }
 
-  return <LoginUI />;
+  return (
+    <div className={className}>
+      <LoginUI />
+    </div>
+  );
 }
 
 export default Login;

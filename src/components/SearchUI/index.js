@@ -7,6 +7,7 @@ import {
   Row,
   Spinner,
 } from 'reactstrap';
+import Images from '../../assets/images';
 import CategoryProducts from '../CategoryProducts';
 
 import './SearchUI.scss';
@@ -36,8 +37,8 @@ function SearchUI({ query, products }) {
               autoComplete="off"
               defaultValue={query}
             />
-            <button type="submit">
-              <i className="material-icons">&#xe8b6;</i>
+            <button type="submit" className="search__input__submit">
+              <img src={Images.ICON_SEARCH} alt="search" />
             </button>
           </form>
         </Col>

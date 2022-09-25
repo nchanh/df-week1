@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './state/store';
 import GlobalStyles from './components/GlobalStyles';
+import 'font-awesome/css/font-awesome.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

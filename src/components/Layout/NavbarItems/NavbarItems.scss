@@ -1,5 +1,17 @@
+@import '../../../styles/variables.scss';
+
+$marginWith: 10px;
+
 .navbar__item {
-  margin-left: 30px;
+  margin-left: $marginWith * 3;
+
+  @include mobile {
+    margin-left: $marginWith;
+  }
+
+  @include tablet {
+    margin-left: $marginWith * 2;
+  }
 
   a {
     text-decoration: none;

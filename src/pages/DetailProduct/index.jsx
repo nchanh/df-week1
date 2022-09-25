@@ -5,7 +5,7 @@ import { Col, Row, Spinner } from 'reactstrap';
 import DetailPage from '../../components/DetailPage';
 import * as productService from '../../services/ProductService';
 
-function DetailProduct() {
+function DetailProduct({ className }) {
   const products = useSelector((state) => state.product.products);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,14 +36,18 @@ function DetailProduct() {
     }, 1000);
   }, []);
 
-  return product && !isLoading ? (
-    <DetailPage product={product} products={products} />
-  ) : (
-    <Row className="mx-0">
-      <Col className="text-center mt-5">
-        <Spinner color="dark">Loading...</Spinner>
-      </Col>
-    </Row>
+  return (
+    <div className={className}>
+      {product && !isLoading ? (
+        <DetailPage product={product} products={products} />
+      ) : (
+        <Row className="mx-0">
+          <Col className="text-center mt-5">
+            <Spinner color="dark">Loading...</Spinner>
+          </Col>
+        </Row>
+      )}
+    </div>
   );
 }
 

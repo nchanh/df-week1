@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
 import Images from '../../../assets/images';
 import NavbarItems from '../NavbarItems';
 import { useSelector } from 'react-redux';
+import { useViewport } from '../../../hooks';
 
-const HEADER_FIRST = [
+let headerFirst = [
   { id: 1, name: 'MYSTERY' },
   { id: 2, name: 'OF' },
   { id: 3, name: 'SILENCE' },
@@ -19,16 +20,46 @@ let headerLast = [
 
 function Header(props) {
   const user = useSelector((state) => state.auth.auth);
+  const location = useLocation();
 
-  headerLast[1].name = !!user.token ? user.username : 'ACCOUNT';
+  const viewPort = useViewport();
+  const isMobile = viewPort.width <= 1024;
+
+  if (isMobile) {
+    const title = 'MOS';
+    headerFirst.map((item, i) => {
+      item.name = title[i];
+      return item;
+    });
+
+    headerLast[0].name = <i class="fa fa-search" aria-hidden="true"></i>;
+
+    headerLast[1].name = !!user.token ? (
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    ) : (
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+    );
+
+    headerLast[2].name = <i class="fa fa-shopping-cart" aria-hidden="true"></i>;
+  } else {
+    headerFirst[0].name = 'MYSTERY';
+    headerFirst[1].name = 'ACCOUNT';
+    headerFirst[2].name = 'SILENCE';
+    headerLast[0].name = 'SEARCH';
+    headerLast[2].name = 'CART';
+  }
+
   headerLast[1].to = !!user.token ? '/logout' : '/login';
 
-  let classNames = 'header' + (props.scroll ? ' css-scroll' : '');
+  let classNames = 'header';
+  classNames += location.pathname === '/' ? ' is-home-page' : '';
+  classNames += props.scroll ? ' css-scroll' : '';
+
   return (
     <div className={classNames}>
       <div className="header__bar">
         <div className="header__bar__first">
-          <NavbarItems items={HEADER_FIRST} />
+          <NavbarItems items={headerFirst} />
         </div>
         <div className="header__bar__middle">
           <Link to="/">

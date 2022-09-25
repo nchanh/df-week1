@@ -20,11 +20,15 @@ function NavbarItems(props) {
             let element = <span>{item.name}</span>;
 
             if (item.to) {
-              element = <Link to={item.to}>{item.name}</Link>;
+              element = (
+                <Link to={item.to}>
+                  <span>{item.name}</span>
+                </Link>
+              );
             } else if (item.href) {
               element = (
                 <a href={item.href} target="_blank" rel="noreferrer">
-                  {item.name}
+                  <span>{item.name}</span>
                 </a>
               );
             } else if (item.isCart) {

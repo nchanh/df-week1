@@ -1,9 +1,9 @@
 import Banner from '../../components/Homes/Banner';
 import ProductRecommend from '../../components/Homes/ProductRecommend';
 
-function Home() {
+function Home({ className }) {
   return (
-    <div>
+    <div className={className}>
       <Banner />
       <ProductRecommend />
     </div>
