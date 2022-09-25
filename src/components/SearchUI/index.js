@@ -64,13 +64,13 @@ function SearchUI({ query, products }) {
         <Row className="mx-0 mt-5">
           <Col className="text-center">
             <Pagination className="custom-pagination">
-              <PaginationItem>
+              <PaginationItem disabled>
                 <PaginationLink first href="#" />
               </PaginationItem>
-              <PaginationItem>
+              <PaginationItem disabled>
                 <PaginationLink href="#" previous />
               </PaginationItem>
-              <PaginationItem>
+              <PaginationItem active>
                 <PaginationLink href="#">1</PaginationLink>
               </PaginationItem>
               <PaginationItem>
