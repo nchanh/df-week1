@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 @mixin handleHover {
   cursor: pointer;
   &:hover {
@@ -16,8 +18,17 @@
 
   &__offcanvas {
     font-size: 12px;
+    border: 0 !important;
 
     width: 40vw !important;
+
+    @include mobile {
+      width: 85vw !important;
+    }
+
+    @include tablet {
+      width: 70vw !important;
+    }
 
     &__body {
       &__image img {

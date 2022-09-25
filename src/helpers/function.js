@@ -35,7 +35,7 @@ export const isWidthMobile = (width) => {
   return width < constants.WIDTH_TABLET;
 };
 
-export const isWidthTable = (width) => {
+export const isWidthTablet = (width) => {
   return width >= constants.WIDTH_TABLET && width < constants.WIDTH_DESKTOP;
 };
 

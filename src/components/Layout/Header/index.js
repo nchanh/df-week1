@@ -38,7 +38,7 @@ function Header(props) {
     headerLast[1].name = !!user.token ? (
       <i class="fa fa-sign-out" aria-hidden="true"></i>
     ) : (
-      <i class="fa fa-user-o" aria-hidden="true"></i>
+      <i class="fa fa-user" aria-hidden="true"></i>
     );
 
     headerLast[2].name = <i class="fa fa-shopping-cart" aria-hidden="true"></i>;

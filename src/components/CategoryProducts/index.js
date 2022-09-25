@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
-import { isWidthTable } from '../../helpers/function';
+import { isWidthTablet } from '../../helpers/function';
 import { useViewport } from '../../hooks';
 import './CategoryProducts.scss';
 
@@ -19,7 +19,7 @@ function CategoryProducts({ products, numberProducts = 16 }) {
   };
 
   const viewPort = useViewport();
-  const isTablet = isWidthTable(viewPort.width);
+  const isTablet = isWidthTablet(viewPort.width);
 
   return (
     <Row className="category-product mx-0">
