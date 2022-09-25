@@ -8,7 +8,7 @@ function ProductRecommend() {
 
   return (
     <div className="product-recommend">
-      <h4>RECOMMEND PRODUCTS TO YOU</h4>
+      <h4 className="product-recommend__title">RECOMMEND PRODUCTS TO YOU</h4>
       <CategoryProducts
         products={products}
         numberProducts="16"

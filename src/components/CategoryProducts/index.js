@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
+import { isWidthTable } from '../../helpers/function';
+import { useViewport } from '../../hooks';
 import './CategoryProducts.scss';
 
 function CategoryProducts({ products, numberProducts = 16 }) {
@@ -16,10 +18,19 @@ function CategoryProducts({ products, numberProducts = 16 }) {
     window.scrollTo(0, 0);
   };
 
+  const viewPort = useViewport();
+  const isTablet = isWidthTable(viewPort.width);
+
   return (
     <Row className="category-product mx-0">
       {products &&
         products.map((item, i) => {
+          let classNames = 'category-product__detail';
+
+          if (isTablet) {
+            classNames += i % 2 === 0 ? ' ps-4' : ' pe-4';
+          }
+
           return (
             numberProducts > i && (
               <Col
@@ -30,7 +41,7 @@ function CategoryProducts({ products, numberProducts = 16 }) {
                 onMouseOver={() => setIsActive(i)}
                 onMouseOut={() => setIsActive(-1)}
                 onClick={() => handleClickProduct(item.id)}
-                className="category-product__detail"
+                className={classNames}
               >
                 <img src={item.images[0].url} alt={item.title} />
                 <div className={classesInfo(i)}>

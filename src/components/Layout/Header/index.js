@@ -5,6 +5,7 @@ import Images from '../../../assets/images';
 import NavbarItems from '../NavbarItems';
 import { useSelector } from 'react-redux';
 import { useViewport } from '../../../hooks';
+import { isWidthMobile } from '../../../helpers/function';
 
 let headerFirst = [
   { id: 1, name: 'MYSTERY' },
@@ -23,7 +24,7 @@ function Header(props) {
   const location = useLocation();
 
   const viewPort = useViewport();
-  const isMobile = viewPort.width <= 1024;
+  const isMobile = isWidthMobile(viewPort.width);
 
   if (isMobile) {
     const title = 'MOS';

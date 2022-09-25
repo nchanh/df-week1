@@ -86,7 +86,7 @@ function DetailPage({ product, products }) {
       </Row>
 
       <div className="px-5">
-        <p>YOU MAY ALSO LIKE</p>
+        <p className="ms-3">YOU MAY ALSO LIKE</p>
         <CategoryProducts products={products} limit="8" />
       </div>
     </div>
