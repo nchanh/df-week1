@@ -8,6 +8,7 @@ const Login = React.lazy(() => import('../pages/Login'));
 
 const publicRoutes = [
   { path: '/', component: Home },
+  { path: '/df-week1', component: Home },
   { path: '/product/:productId', component: DetailProduct },
   { path: '/search', component: Search },
   { path: '/login', component: Login },

@@ -64,7 +64,7 @@ function Header(props) {
           <NavbarItems items={headerFirst} />
         </div>
         <div className="header__bar__middle">
-          <Link to="/">
+          <Link to="/df-week1">
             <img src={Images.LOGO} alt="logo-mos"></img>
           </Link>
         </div>
