@@ -54,7 +54,10 @@ function Header(props) {
   headerLast[1].to = !!user.token ? '/logout' : '/login';
 
   let classNames = 'header';
-  classNames += location.pathname === '/' ? ' is-home-page' : '';
+  classNames +=
+    location.pathname === '/' || location.pathname === '/df-week1'
+      ? ' is-home-page'
+      : '';
   classNames += props.scroll ? ' css-scroll' : '';
 
   return (
@@ -64,7 +67,7 @@ function Header(props) {
           <NavbarItems items={headerFirst} />
         </div>
         <div className="header__bar__middle">
-          <Link to="/df-week1">
+          <Link to="/">
             <img src={Images.LOGO} alt="logo-mos"></img>
           </Link>
         </div>
