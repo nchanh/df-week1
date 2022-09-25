@@ -44,9 +44,10 @@ function Header(props) {
     headerLast[2].name = <i class="fa fa-shopping-cart" aria-hidden="true"></i>;
   } else {
     headerFirst[0].name = 'MYSTERY';
-    headerFirst[1].name = 'ACCOUNT';
+    headerFirst[1].name = 'OF';
     headerFirst[2].name = 'SILENCE';
     headerLast[0].name = 'SEARCH';
+    headerLast[1].name = !!user.token ? user.username : 'ACCOUNT';
     headerLast[2].name = 'CART';
   }
 
