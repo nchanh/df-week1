@@ -22,7 +22,7 @@ export const getProduct = async (productId) => {
 
 export const getAllProductInMocki = async () => {
   return await axios
-    .get(`https://mocki.io/v1/be533d94-f0bf-4206-80af-02372e44d81e`)
+    .get(`https://mocki.io/v1/151a87b1-dee7-4bd4-8e9b-afc2948bd5a2`)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
