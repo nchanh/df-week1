@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Input, Row, Spinner } from 'reactstrap';
 import Images from '../../assets/images';
@@ -18,6 +18,10 @@ function DetailPage({ product, products }) {
   const [size, setSize] = useState('small');
   const dispatch = useDispatch();
   const [isDisabledAdd, setIsDisabledAdd] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddToCart = () => {
     if (isDisabledAdd) {

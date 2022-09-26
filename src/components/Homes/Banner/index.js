@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
 import Images from '../../../assets/images';
 import './Banner.scss';
 
 const CLOTHES = [
   {
-    id: 1,
+    id: 22,
     src: Images.CLOTHES_1,
   },
   {
-    id: 2,
+    id: 23,
     src: Images.CLOTHES_2,
   },
   {
-    id: 3,
+    id: 21,
     src: Images.CLOTHES_3,
   },
 ];
@@ -50,7 +51,9 @@ function Banner() {
         lg="4"
         className={classes}
       >
-        <img src={item.src} alt={alt} />
+        <Link to={'/product/' + item.id}>
+          <img src={item.src} alt={alt} />
+        </Link>
       </Col>
     );
   });
