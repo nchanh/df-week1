@@ -12,6 +12,7 @@ import { scrollToTop } from './helpers/function';
 
 function App({ children }) {
   const dispatch = useDispatch();
+  const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
     const fetchGetAllProducts = async () => {
@@ -24,7 +25,6 @@ function App({ children }) {
     fetchGetAllProducts();
   });
 
-  const [scroll, setScroll] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScroll(window.scrollY > 50);
