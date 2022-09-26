@@ -8,6 +8,7 @@ import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
 // import { PRODUCTS } from './constants/data';
 import Loading from './components/Loading';
+import { scrollToTop } from './helpers/function';
 
 function App({ children }) {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ function App({ children }) {
     });
   }, []);
 
+  const handleScrollToTop = () => {
+    scrollToTop();
+  };
+
   return (
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
@@ -51,6 +56,11 @@ function App({ children }) {
             </Routes>
           </div>
         </Layout>
+        {scroll && (
+          <div className="scroll-top" onClick={handleScrollToTop}>
+            <i className="fa fa-arrow-up" aria-hidden="true"></i>
+          </div>
+        )}
       </BrowserRouter>
     </Suspense>
   );

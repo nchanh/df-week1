@@ -42,3 +42,7 @@ export const isWidthTablet = (width) => {
 export const isWidthDesktop = (width) => {
   return width >= constants.WIDTH_DESKTOP;
 };
+
+export const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};

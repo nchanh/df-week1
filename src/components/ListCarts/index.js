@@ -1,30 +1,38 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Col,
-  Input,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
   Row,
   Spinner,
 } from 'reactstrap';
-import { convertNameSize } from '../../helpers/function';
+import { convertNameSize, scrollToTop } from '../../helpers/function';
 import {
   decreaseProduct,
   increaseProduct,
   removeProductCart,
+  resetCarts,
 } from '../../state/cart/cartActions';
+import ModalComponent from '../ModalComponent';
 import './ListCarts.scss';
+import SubmitCart from './SubmitCart';
 
 function ListCarts({ name, isCart }) {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cart.carts);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const _numberOrders = useSelector((state) => state.cart.numberOrders);
+
+  const navigate = useNavigate();
+
   const [visible, setVisible] = useState(false);
   const [isDisabledCheckout, setIsDisabledCheckout] = useState(false);
+
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isOpenOrder, setIsOpenOrder] = useState(false);
 
   const handleToggle = () => setVisible(!visible);
 
@@ -41,7 +49,17 @@ function ListCarts({ name, isCart }) {
   };
 
   const handleClickCheckout = () => {
-    if (isDisabledCheckout || isSubmit || _numberOrders === 0) {
+    if (isDisabledCheckout || _numberOrders === 0) {
+      return;
+    }
+
+    if (isSubmit) {
+      setIsOpenOrder(true);
+
+      setTimeout(() => {
+        setIsOpenOrder(false);
+      }, 3000);
+
       return;
     }
 
@@ -59,6 +77,30 @@ function ListCarts({ name, isCart }) {
     } else {
       setVisible(!visible);
     }
+  };
+
+  const handleClickSubmit = (values, { setSubmitting, resetForm }) => {
+    // Loading
+    setTimeout(() => {
+      setSubmitting(false);
+      setIsOpenOrder(true);
+    }, 1500);
+
+    // Success submit order
+    setTimeout(() => {
+      dispatch(resetCarts());
+      resetForm();
+
+      setIsSubmit(false);
+      setVisible(false);
+      setIsOpenOrder(false);
+    }, 3000);
+  };
+
+  const handleOpenProduct = (productId) => {
+    handleToggle();
+    scrollToTop();
+    navigate(`/product/${productId}`);
   };
 
   return (
@@ -103,7 +145,10 @@ function ListCarts({ name, isCart }) {
                   lg="6"
                   className="list-cart__offcanvas__body__product"
                 >
-                  <p className="list-cart__offcanvas__body__product__title">
+                  <p
+                    className="list-cart__offcanvas__body__product__title"
+                    onClick={() => handleOpenProduct(item.productId)}
+                  >
                     {item.title}
                   </p>
                   <div className="list-cart__offcanvas__body__product__content">
@@ -156,48 +201,42 @@ function ListCarts({ name, isCart }) {
             </Row>
 
             {isSubmit && (
-              <div className="checkout">
-                <Row className="list-cart__offcanvas__footer__total__checkout">
-                  <Col>
-                    <Input type="text" className="" placeholder="Full name" />
-                  </Col>
-                  <Col className="text-end">
-                    <Input type="text" className="" placeholder="Email" />
-                  </Col>
-                </Row>
+              <Fragment>
+                <SubmitCart onSubmit={handleClickSubmit} />
 
-                <Row className="list-cart__offcanvas__footer__total__checkout mt-2">
-                  <Col>
-                    <Input
-                      type="text"
-                      className=""
-                      placeholder="Phone number"
-                    />
-                  </Col>
-                  <Col className="text-end">
-                    <Input type="text" className="" placeholder="Address" />
-                  </Col>
-                </Row>
-              </div>
+                <ModalComponent
+                  title="Order Success"
+                  body="Thank you for your purchase."
+                  isOpen={isOpenOrder}
+                />
+              </Fragment>
             )}
 
-            <Row>
-              <Col>
-                <button
-                  className="list-cart__offcanvas__footer__total__btn"
-                  onClick={handleClickCheckout}
-                  disabled={isDisabledCheckout}
-                >
-                  {isDisabledCheckout ? (
-                    <Spinner size="sm" color="light">
-                      Loading...
-                    </Spinner>
-                  ) : (
-                    <span>{isSubmit ? 'SUBMIT' : 'CHECKOUT'}</span>
-                  )}
-                </button>
-              </Col>
-            </Row>
+            {!isSubmit && (
+              <Row>
+                <Col>
+                  <button
+                    className="list-cart__offcanvas__footer__total__btn"
+                    onClick={handleClickCheckout}
+                    disabled={isDisabledCheckout}
+                  >
+                    {isDisabledCheckout ? (
+                      <Spinner size="sm" color="light">
+                        Loading...
+                      </Spinner>
+                    ) : (
+                      <span>CHECKOUT</span>
+                    )}
+                  </button>
+                  <ModalComponent
+                    title="Order Success"
+                    body="Thank you for your purchase."
+                    isOpen={isOpenOrder}
+                  />
+                </Col>
+              </Row>
+            )}
+
             <Row>
               <Col>
                 <button

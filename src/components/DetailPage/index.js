@@ -6,6 +6,7 @@ import {
   convertNameSize,
   isWidthDevice,
   isWidthTablet,
+  scrollToTop,
 } from '../../helpers/function';
 import { useViewport } from '../../hooks';
 
@@ -20,7 +21,7 @@ function DetailPage({ product, products }) {
   const [isDisabledAdd, setIsDisabledAdd] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToTop();
   }, []);
 
   const handleAddToCart = () => {

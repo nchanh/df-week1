@@ -25,3 +25,9 @@ export const removeProductCart = (productId) => {
     payload: productId,
   };
 };
+
+export const resetCarts = () => {
+  return {
+    type: 'RESET_CARTS',
+  };
+};

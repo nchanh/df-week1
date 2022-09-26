@@ -57,7 +57,7 @@ function SearchUI({ query, products }) {
             </Col>
           </Row>
         ) : (
-          <CategoryProducts products={products} numberProducts={24} />
+          <CategoryProducts products={products} numberProducts={20} />
         )}
       </Row>
       {products.length > 0 && !isLoading && (
