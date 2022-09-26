@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
-import { isWidthTablet } from '../../helpers/function';
+import { isWidthTablet, scrollToTop } from '../../helpers/function';
 import { useViewport } from '../../hooks';
 import './CategoryProducts.scss';
 
@@ -15,7 +15,7 @@ function CategoryProducts({ products, numberProducts = 16 }) {
 
   const handleClickProduct = (productId) => {
     navigate(`/product/${productId}`);
-    window.scrollTo(0, 0);
+    scrollToTop();
   };
 
   const viewPort = useViewport();

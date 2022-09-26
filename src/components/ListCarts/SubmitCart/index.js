@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { Col, Input, Row, Spinner } from 'reactstrap';
+import { Col, FormFeedback, Input, Row, Spinner } from 'reactstrap';
 
 function SubmitCart({ onSubmit }) {
   const initialValues = {
@@ -13,21 +13,21 @@ function SubmitCart({ onSubmit }) {
     const errors = {};
 
     if (!values.email) {
-      errors.email = 'Required';
+      errors.email = 'Input email is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = 'Invalid email address';
     }
 
     if (!values.fullName) {
-      errors.fullName = 'Required';
+      errors.fullName = 'Input full name is required';
     }
 
     if (!values.phoneNumber) {
-      errors.phoneNumber = 'Required';
+      errors.phoneNumber = 'Input phone number is required';
     }
 
     if (!values.address) {
-      errors.address = 'Required';
+      errors.address = 'Input address is required';
     }
 
     return errors;
@@ -63,13 +63,12 @@ function SubmitCart({ onSubmit }) {
                     onBlur={handleBlur}
                     value={values.fullName}
                     autoComplete="off"
+                    invalid={errors && errors.fullName && touched.fullName}
                   />
 
-                  {errors && errors.fullName && touched.fullName && (
-                    <span className="list-cart__offcanvas__footer__total__checkout__text-error">
-                      {errors.fullName}
-                    </span>
-                  )}
+                  <FormFeedback className="login__wrapper__feedback text-end">
+                    {errors && errors.fullName}
+                  </FormFeedback>
                 </Col>
                 <Col className="text-end mb-1">
                   <Input
@@ -80,13 +79,12 @@ function SubmitCart({ onSubmit }) {
                     onBlur={handleBlur}
                     value={values.email}
                     autoComplete="off"
+                    invalid={errors && errors.email && touched.email}
                   />
 
-                  {errors && errors.email && touched.email && (
-                    <span className="list-cart__offcanvas__footer__total__checkout__text-error">
-                      {errors.email}
-                    </span>
-                  )}
+                  <FormFeedback className="login__wrapper__feedback text-end">
+                    {errors && errors.email}
+                  </FormFeedback>
                 </Col>
               </Row>
 
@@ -100,13 +98,14 @@ function SubmitCart({ onSubmit }) {
                     onBlur={handleBlur}
                     value={values.phoneNumber}
                     autoComplete="off"
+                    invalid={
+                      errors && errors.phoneNumber && touched.phoneNumber
+                    }
                   />
 
-                  {errors && errors.phoneNumber && touched.phoneNumber && (
-                    <span className="list-cart__offcanvas__footer__total__checkout__text-error">
-                      {errors.phoneNumber}
-                    </span>
-                  )}
+                  <FormFeedback className="login__wrapper__feedback text-end">
+                    {errors && errors.phoneNumber}
+                  </FormFeedback>
                 </Col>
                 <Col className="text-end mb-1">
                   <Input
@@ -117,13 +116,12 @@ function SubmitCart({ onSubmit }) {
                     onBlur={handleBlur}
                     value={values.address}
                     autoComplete="off"
+                    invalid={errors && errors.address && touched.address}
                   />
 
-                  {errors && errors.address && touched.address && (
-                    <span className="list-cart__offcanvas__footer__total__checkout__text-error">
-                      {errors.address}
-                    </span>
-                  )}
+                  <FormFeedback className="login__wrapper__feedback text-end">
+                    {errors && errors.address}
+                  </FormFeedback>
                 </Col>
               </Row>
             </div>

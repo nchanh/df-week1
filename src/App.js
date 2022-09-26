@@ -8,6 +8,7 @@ import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
 // import { PRODUCTS } from './constants/data';
 import Loading from './components/Loading';
+import { scrollToTop } from './helpers/function';
 
 function App({ children }) {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function App({ children }) {
   }, []);
 
   const handleScrollToTop = () => {
-    window.scrollTo(0, 0);
+    scrollToTop();
   };
 
   return (

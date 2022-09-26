@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Col,
   Offcanvas,
@@ -8,7 +9,7 @@ import {
   Row,
   Spinner,
 } from 'reactstrap';
-import { convertNameSize } from '../../helpers/function';
+import { convertNameSize, scrollToTop } from '../../helpers/function';
 import {
   decreaseProduct,
   increaseProduct,
@@ -24,6 +25,9 @@ function ListCarts({ name, isCart }) {
   const carts = useSelector((state) => state.cart.carts);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const _numberOrders = useSelector((state) => state.cart.numberOrders);
+
+  const navigate = useNavigate();
+
   const [visible, setVisible] = useState(false);
   const [isDisabledCheckout, setIsDisabledCheckout] = useState(false);
 
@@ -93,6 +97,12 @@ function ListCarts({ name, isCart }) {
     }, 3000);
   };
 
+  const handleOpenProduct = (productId) => {
+    handleToggle();
+    scrollToTop();
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <div className="list-cart">
       <span className="list-cart__btn-cart" onClick={handleToggle}>
@@ -135,7 +145,10 @@ function ListCarts({ name, isCart }) {
                   lg="6"
                   className="list-cart__offcanvas__body__product"
                 >
-                  <p className="list-cart__offcanvas__body__product__title">
+                  <p
+                    className="list-cart__offcanvas__body__product__title"
+                    onClick={() => handleOpenProduct(item.productId)}
+                  >
                     {item.title}
                   </p>
                   <div className="list-cart__offcanvas__body__product__content">
