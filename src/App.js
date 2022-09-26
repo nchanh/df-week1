@@ -3,10 +3,10 @@ import { publicRoutes } from './routes';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Suspense, useEffect, useState } from 'react';
-// import * as productService from './services/ProductService';
+import * as productService from './services/ProductService';
 import { addProducts } from './state/product/productActions';
 import { useDispatch } from 'react-redux';
-import { PRODUCTS } from './constants/data';
+// import { PRODUCTS } from './constants/data';
 import Loading from './components/Loading';
 
 function App({ children }) {
@@ -14,10 +14,10 @@ function App({ children }) {
 
   useEffect(() => {
     const fetchGetAllProducts = async () => {
-      // const _products = await productService.getAllProducts();
-      // dispatch(addProducts(_products));
+      const _products = await productService.getAllProductInMocki();
+      dispatch(addProducts(_products));
 
-      dispatch(addProducts(PRODUCTS));
+      // dispatch(addProducts(PRODUCTS));
     };
 
     fetchGetAllProducts();
@@ -38,8 +38,15 @@ function App({ children }) {
             <Routes>
               {publicRoutes.map((route, i) => {
                 const Page = route.component;
+                const classNames = route.path !== '/' ? 'header-other' : '';
 
-                return <Route key={i} path={route.path} element={<Page />} />;
+                return (
+                  <Route
+                    key={i}
+                    path={route.path}
+                    element={<Page className={classNames} />}
+                  />
+                );
               })}
             </Routes>
           </div>

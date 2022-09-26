@@ -9,6 +9,8 @@ $heigh-header: 5vw;
   z-index: 100;
   width: 100%;
   background-color: var(--color-white);
+  font-size: 13px;
+  transition: all 0.25s ease-in;
 
   &__bar {
     display: flex;
@@ -29,13 +31,36 @@ $heigh-header: 5vw;
 
     &__middle {
       img {
-        height: 70px;
+        height: 120px;
       }
     }
   }
 }
 
 .css-scroll {
-  transition: all 0.4s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: var(--color-black) !important;
+  background-color: var(--color-white) !important;
+
+  span {
+    color: var(--color-black) !important;
+  }
+}
+
+.is-home-page {
+  background-color: transparent;
+  color: var(--color-white);
+
+  a {
+    color: var(--color-white) !important;
+  }
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+
+    a {
+      color: var(--color-black) !important;
+    }
+  }
 }

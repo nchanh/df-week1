@@ -819,4 +819,127 @@ export const PRODUCTS = [
     ],
     id: '20',
   },
+  {
+    title: 'Tee white',
+    price: '564.00',
+    describe:
+      'The signature fleece hoodie is detailed with an Essentials Fear of God logo in a tonal velvet flocking reminiscent of vintage athletic school uniforms. A kangaroo pocket, rib-knit cuffs, and waist hem frame the piece. An Essentials rubberized label is stitched on the double-layered hood.',
+    slug: 'sit-illum-voluptas-essentials-hoddie-egg',
+    color: 'White',
+    brand: 'MOS',
+    categoryId: 99,
+    categoryName: 'MOS Limit',
+    sizes: ['small', 'large', 'medium', 'extraLarge'],
+    images: [
+      {
+        tile: 'Ergonomic Granite Ball',
+        url: '/df-week1/mos/tee-white/tee-white-1.jpeg',
+      },
+      {
+        tile: 'Recycled Wooden Chair',
+        url: '/df-week1/mos/tee-white/tee-white-2.jpeg',
+      },
+      {
+        tile: 'Refined Plastic Gloves',
+        url: '/df-week1/mos/tee-white/tee-white-3.jpeg',
+      },
+      {
+        tile: 'Recycled Plastic Salad',
+        url: '/df-week1/mos/tee-white/tee-white-4.jpeg',
+      },
+    ],
+    detail: [
+      'CLASSIC ESSENTIALS FIT',
+      '80% COTTON / 20% POLYESTER HEAVYWEIGHT FLEECE',
+      'ESSENTIALS FEAR OF GOD FLOCKED LOGO ON CHEST',
+      'ESSENTIALS RUBBERIZED LABEL',
+      'RIB-KNIT CUFFS AND WAIST HEM',
+      'KANGAROO POCKET',
+      'IMPORTED',
+      'ESSENTIALS PRODUCTS ARE CURRENTLY NOT AVAILABLE FOR PURCHASE OR SHIPMENT TO EUROPE INCLUDING BELGIUM, LUXEMBOURG, AND THE NETHERLANDS.',
+    ],
+    id: '21',
+  },
+  {
+    title: 'Tee black',
+    price: '564.00',
+    describe:
+      'The signature fleece hoodie is detailed with an Essentials Fear of God logo in a tonal velvet flocking reminiscent of vintage athletic school uniforms. A kangaroo pocket, rib-knit cuffs, and waist hem frame the piece. An Essentials rubberized label is stitched on the double-layered hood.',
+    slug: 'sit-illum-voluptas-essentials-hoddie-egg',
+    color: 'Black',
+    brand: 'MOS',
+    categoryId: 99,
+    categoryName: 'MOS Limit',
+    sizes: ['small', 'large', 'medium', 'extraLarge'],
+    images: [
+      {
+        tile: 'Ergonomic Granite Ball',
+        url: '/df-week1/mos/tee-black/tee-black-1.jpeg',
+      },
+      {
+        tile: 'Recycled Wooden Chair',
+        url: '/df-week1/mos/tee-black/tee-black-2.jpeg',
+      },
+      {
+        tile: 'Refined Plastic Gloves',
+        url: '/df-week1/mos/tee-black/tee-black-3.jpeg',
+      },
+      {
+        tile: 'Recycled Plastic Salad',
+        url: '/df-week1/mos/tee-black/tee-black-4.jpeg',
+      },
+    ],
+    detail: [
+      'CLASSIC ESSENTIALS FIT',
+      '80% COTTON / 20% POLYESTER HEAVYWEIGHT FLEECE',
+      'ESSENTIALS FEAR OF GOD FLOCKED LOGO ON CHEST',
+      'ESSENTIALS RUBBERIZED LABEL',
+      'RIB-KNIT CUFFS AND WAIST HEM',
+      'KANGAROO POCKET',
+      'IMPORTED',
+      'ESSENTIALS PRODUCTS ARE CURRENTLY NOT AVAILABLE FOR PURCHASE OR SHIPMENT TO EUROPE INCLUDING BELGIUM, LUXEMBOURG, AND THE NETHERLANDS.',
+    ],
+    id: '22',
+  },
+  {
+    title: 'Tee green',
+    price: '564.00',
+    describe:
+      'The signature fleece hoodie is detailed with an Essentials Fear of God logo in a tonal velvet flocking reminiscent of vintage athletic school uniforms. A kangaroo pocket, rib-knit cuffs, and waist hem frame the piece. An Essentials rubberized label is stitched on the double-layered hood.',
+    slug: 'sit-illum-voluptas-essentials-hoddie-egg',
+    color: 'Green',
+    brand: 'MOS',
+    categoryId: 99,
+    categoryName: 'MOS Limit',
+    sizes: ['small', 'large', 'medium', 'extraLarge'],
+    images: [
+      {
+        tile: 'Ergonomic Granite Ball',
+        url: '/df-week1/mos/tee-green/tee-green-1.jpeg',
+      },
+      {
+        tile: 'Recycled Wooden Chair',
+        url: '/df-week1/mos/tee-green/tee-green-2.jpeg',
+      },
+      {
+        tile: 'Refined Plastic Gloves',
+        url: '/df-week1/mos/tee-green/tee-green-3.jpeg',
+      },
+      {
+        tile: 'Recycled Plastic Salad',
+        url: '/df-week1/mos/tee-green/tee-green-4.jpeg',
+      },
+    ],
+    detail: [
+      'CLASSIC ESSENTIALS FIT',
+      '80% COTTON / 20% POLYESTER HEAVYWEIGHT FLEECE',
+      'ESSENTIALS FEAR OF GOD FLOCKED LOGO ON CHEST',
+      'ESSENTIALS RUBBERIZED LABEL',
+      'RIB-KNIT CUFFS AND WAIST HEM',
+      'KANGAROO POCKET',
+      'IMPORTED',
+      'ESSENTIALS PRODUCTS ARE CURRENTLY NOT AVAILABLE FOR PURCHASE OR SHIPMENT TO EUROPE INCLUDING BELGIUM, LUXEMBOURG, AND THE NETHERLANDS.',
+    ],
+    id: '23',
+  },
 ];

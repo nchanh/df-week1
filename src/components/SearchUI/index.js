@@ -7,6 +7,7 @@ import {
   Row,
   Spinner,
 } from 'reactstrap';
+import Images from '../../assets/images';
 import CategoryProducts from '../CategoryProducts';
 
 import './SearchUI.scss';
@@ -36,8 +37,8 @@ function SearchUI({ query, products }) {
               autoComplete="off"
               defaultValue={query}
             />
-            <button type="submit">
-              <i className="material-icons">&#xe8b6;</i>
+            <button type="submit" className="search__input__submit">
+              <img src={Images.ICON_SEARCH} alt="search" />
             </button>
           </form>
         </Col>
@@ -63,13 +64,13 @@ function SearchUI({ query, products }) {
         <Row className="mx-0 mt-5">
           <Col className="text-center">
             <Pagination className="custom-pagination">
-              <PaginationItem>
+              <PaginationItem disabled>
                 <PaginationLink first href="#" />
               </PaginationItem>
-              <PaginationItem>
+              <PaginationItem disabled>
                 <PaginationLink href="#" previous />
               </PaginationItem>
-              <PaginationItem>
+              <PaginationItem active>
                 <PaginationLink href="#">1</PaginationLink>
               </PaginationItem>
               <PaginationItem>

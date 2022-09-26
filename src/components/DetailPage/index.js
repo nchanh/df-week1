@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Input, Row, Spinner } from 'reactstrap';
 import Images from '../../assets/images';
-import { convertNameSize } from '../../helpers/function';
+import {
+  convertNameSize,
+  isWidthDevice,
+  isWidthTablet,
+} from '../../helpers/function';
+import { useViewport } from '../../hooks';
 
 import { addToCart } from '../../state/cart/cartActions';
+import CarouselUI from '../Carousel';
 import CategoryProducts from '../CategoryProducts';
 import './DetailPage.scss';
 
@@ -12,6 +18,10 @@ function DetailPage({ product, products }) {
   const [size, setSize] = useState('small');
   const dispatch = useDispatch();
   const [isDisabledAdd, setIsDisabledAdd] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddToCart = () => {
     if (isDisabledAdd) {
@@ -35,17 +45,37 @@ function DetailPage({ product, products }) {
     }, 800);
   };
 
+  const viewPort = useViewport();
+  const isTablet = isWidthTablet(viewPort.width);
+  const isDevice = isWidthDevice(viewPort.width);
+
+  let images = product.images;
+  if (isDevice) {
+    images = images.map((item) => {
+      return {
+        src: item.url,
+        altText: item.title,
+      };
+    });
+  }
+
   return (
     <div className="text-start">
       <Row className="detail">
-        <Col sm="12" md="4" lg="4"></Col>
-        <Col sm="12" md="4" lg="4">
-          {product &&
-            product.images.map((item, i) => (
+        {!isTablet && <Col sm="12" md="4" lg="4"></Col>}
+
+        <Col sm="12" md="5" lg="4" className="detail__images">
+          {isDevice ? (
+            <CarouselUI data={images} />
+          ) : (
+            images &&
+            images.map((item, i) => (
               <img key={i} src={item.url} alt={item.title} />
-            ))}
+            ))
+          )}
         </Col>
-        <Col sm="12" md="4" lg="4" className="detail__text text-start">
+
+        <Col sm="12" md="7" lg="4" className="detail__text text-start">
           <p>{product.categoryName}</p>
           <h3>{product.title}</h3>
           <p>
@@ -85,8 +115,8 @@ function DetailPage({ product, products }) {
         </Col>
       </Row>
 
-      <div className="px-5">
-        <p>YOU MAY ALSO LIKE</p>
+      <div className="detail-other-product">
+        <p className="detail-other-product__title">YOU MAY ALSO LIKE</p>
         <CategoryProducts products={products} limit="8" />
       </div>
     </div>
