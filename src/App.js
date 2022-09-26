@@ -57,7 +57,7 @@ function App({ children }) {
         </Layout>
         {scroll && (
           <div className="scroll-top" onClick={handleScrollToTop}>
-            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i className="fa fa-arrow-up" aria-hidden="true"></i>
           </div>
         )}
       </BrowserRouter>

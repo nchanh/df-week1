@@ -33,15 +33,17 @@ function Header(props) {
       return item;
     });
 
-    headerLast[0].name = <i class="fa fa-search" aria-hidden="true"></i>;
+    headerLast[0].name = <i className="fa fa-search" aria-hidden="true"></i>;
 
     headerLast[1].name = !!user.token ? (
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      <i className="fa fa-sign-out" aria-hidden="true"></i>
     ) : (
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <i className="fa fa-user" aria-hidden="true"></i>
     );
 
-    headerLast[2].name = <i class="fa fa-shopping-cart" aria-hidden="true"></i>;
+    headerLast[2].name = (
+      <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+    );
   } else {
     headerFirst[0].name = 'MYSTERY';
     headerFirst[1].name = 'OF';

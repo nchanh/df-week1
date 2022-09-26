@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Col, Container, Input, Row, Spinner } from 'reactstrap';
+import { Col, Container, FormFeedback, Input, Row, Spinner } from 'reactstrap';
+import { Form, Formik } from 'formik';
 
 import { setAuth } from '../../state/auth/authActions';
 import './LoginUI.scss';
@@ -11,27 +12,41 @@ function LoginUI() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const initialValues = {
+    username: '',
+    password: '',
+  };
 
+  const onSubmit = (values, { setSubmitting }) => {
     setIsError(false);
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
 
-      if (password === '123') {
-        const auth = { token: constants.FAKE_TOKEN, username: username };
+    setTimeout(() => {
+      setSubmitting(false);
+
+      if (values.password === '123') {
+        const auth = { token: constants.FAKE_TOKEN, username: values.username };
         dispatch(setAuth(auth));
         navigate('/');
       } else {
         setIsError(true);
       }
     }, 1000);
+  };
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.username) {
+      errors.username = 'Input username is required';
+    }
+
+    if (!values.password) {
+      errors.password = 'Input password is required';
+    }
+
+    return errors;
   };
 
   return (
@@ -51,40 +66,71 @@ function LoginUI() {
           </Row>
         )}
 
-        <div className="mb-3">
-          {isLoading && <Spinner color="dark">Loading...</Spinner>}
-        </div>
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={onSubmit}
+        >
+          {(formikProps) => {
+            const {
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            } = formikProps;
 
-        <form onSubmit={handleSubmit}>
-          <Row className="login__wrapper__input_username">
-            <Col>
-              <Input
-                type="text"
-                name="username"
-                placeholder="USERNAME"
-                autoComplete="off"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </Col>
-          </Row>
-          <Row className="login__wrapper__input_password mb-2">
-            <Col>
-              <Input
-                type="password"
-                name="password"
-                placeholder="PASSWORD"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Col>
-          </Row>
-          <Row className="login__wrapper__btn_submit">
-            <Col>
-              <button type="submit">Sign in</button>
-            </Col>
-          </Row>
-        </form>
+            return (
+              <Form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  {isSubmitting && <Spinner color="dark">Loading...</Spinner>}
+                </div>
+
+                <Row className="login__wrapper__input_username">
+                  <Col>
+                    <Input
+                      type="text"
+                      name="username"
+                      placeholder="USERNAME"
+                      autoComplete="off"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
+                      invalid={errors && errors.username && touched.username}
+                    />
+                    <FormFeedback className="login__wrapper__feedback mb-4 text-end">
+                      {errors && errors.username}
+                    </FormFeedback>
+                  </Col>
+                </Row>
+                <Row className="login__wrapper__input_password mb-2">
+                  <Col>
+                    <Input
+                      type="password"
+                      name="password"
+                      placeholder="PASSWORD"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password}
+                      invalid={errors && errors.password && touched.password}
+                    />
+                    <FormFeedback className="login__wrapper__feedback mb-4 text-end">
+                      {errors && errors.password}
+                    </FormFeedback>
+                  </Col>
+                </Row>
+                <Row className="login__wrapper__btn_submit">
+                  <Col>
+                    <button type="submit">SUBMIT</button>
+                  </Col>
+                </Row>
+              </Form>
+            );
+          }}
+        </Formik>
+
         <Row className="login__wrapper__forgot_pw text-start">
           <Col>
             <a href="/forgot-password">Forgot your password?</a>
