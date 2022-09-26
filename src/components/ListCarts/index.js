@@ -15,6 +15,7 @@ import {
   increaseProduct,
   removeProductCart,
 } from '../../state/cart/cartActions';
+import ModalComponent from '../ModalComponent';
 import './ListCarts.scss';
 
 function ListCarts({ name, isCart }) {
@@ -25,6 +26,7 @@ function ListCarts({ name, isCart }) {
   const [visible, setVisible] = useState(false);
   const [isDisabledCheckout, setIsDisabledCheckout] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isOpenOrder, setIsOpenOrder] = useState(false);
 
   const handleToggle = () => setVisible(!visible);
 
@@ -41,7 +43,17 @@ function ListCarts({ name, isCart }) {
   };
 
   const handleClickCheckout = () => {
-    if (isDisabledCheckout || isSubmit || _numberOrders === 0) {
+    if (isDisabledCheckout || _numberOrders === 0) {
+      return;
+    }
+
+    if (isSubmit) {
+      setIsOpenOrder(true);
+
+      setTimeout(() => {
+        setIsOpenOrder(false);
+      }, 3000);
+
       return;
     }
 
@@ -196,6 +208,11 @@ function ListCarts({ name, isCart }) {
                     <span>{isSubmit ? 'SUBMIT' : 'CHECKOUT'}</span>
                   )}
                 </button>
+                <ModalComponent
+                  title="Order Success"
+                  body="Thank you for your purchase."
+                  isOpen={isOpenOrder}
+                />
               </Col>
             </Row>
             <Row>
