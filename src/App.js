@@ -30,6 +30,10 @@ function App({ children }) {
     });
   }, []);
 
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
@@ -51,6 +55,11 @@ function App({ children }) {
             </Routes>
           </div>
         </Layout>
+        {scroll && (
+          <div className="scroll-top" onClick={handleScrollToTop}>
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          </div>
+        )}
       </BrowserRouter>
     </Suspense>
   );
