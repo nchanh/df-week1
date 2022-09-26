@@ -103,6 +103,10 @@
               outline: none;
             }
           }
+
+          &__text-error {
+            color: var(--color-red);
+          }
         }
 
         &__btn {

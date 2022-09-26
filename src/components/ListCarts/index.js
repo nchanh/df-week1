@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Col,
-  Input,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
@@ -14,9 +13,11 @@ import {
   decreaseProduct,
   increaseProduct,
   removeProductCart,
+  resetCarts,
 } from '../../state/cart/cartActions';
 import ModalComponent from '../ModalComponent';
 import './ListCarts.scss';
+import SubmitCart from './SubmitCart';
 
 function ListCarts({ name, isCart }) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function ListCarts({ name, isCart }) {
   const _numberOrders = useSelector((state) => state.cart.numberOrders);
   const [visible, setVisible] = useState(false);
   const [isDisabledCheckout, setIsDisabledCheckout] = useState(false);
+
   const [isSubmit, setIsSubmit] = useState(false);
   const [isOpenOrder, setIsOpenOrder] = useState(false);
 
@@ -71,6 +73,24 @@ function ListCarts({ name, isCart }) {
     } else {
       setVisible(!visible);
     }
+  };
+
+  const handleClickSubmit = (values, { setSubmitting, resetForm }) => {
+    // Loading
+    setTimeout(() => {
+      setSubmitting(false);
+      setIsOpenOrder(true);
+    }, 1500);
+
+    // Success submit order
+    setTimeout(() => {
+      dispatch(resetCarts());
+      resetForm();
+
+      setIsSubmit(false);
+      setVisible(false);
+      setIsOpenOrder(false);
+    }, 3000);
   };
 
   return (
@@ -168,53 +188,42 @@ function ListCarts({ name, isCart }) {
             </Row>
 
             {isSubmit && (
-              <div className="checkout">
-                <Row className="list-cart__offcanvas__footer__total__checkout">
-                  <Col>
-                    <Input type="text" className="" placeholder="Full name" />
-                  </Col>
-                  <Col className="text-end">
-                    <Input type="text" className="" placeholder="Email" />
-                  </Col>
-                </Row>
+              <Fragment>
+                <SubmitCart onSubmit={handleClickSubmit} />
 
-                <Row className="list-cart__offcanvas__footer__total__checkout mt-2">
-                  <Col>
-                    <Input
-                      type="text"
-                      className=""
-                      placeholder="Phone number"
-                    />
-                  </Col>
-                  <Col className="text-end">
-                    <Input type="text" className="" placeholder="Address" />
-                  </Col>
-                </Row>
-              </div>
-            )}
-
-            <Row>
-              <Col>
-                <button
-                  className="list-cart__offcanvas__footer__total__btn"
-                  onClick={handleClickCheckout}
-                  disabled={isDisabledCheckout}
-                >
-                  {isDisabledCheckout ? (
-                    <Spinner size="sm" color="light">
-                      Loading...
-                    </Spinner>
-                  ) : (
-                    <span>{isSubmit ? 'SUBMIT' : 'CHECKOUT'}</span>
-                  )}
-                </button>
                 <ModalComponent
                   title="Order Success"
                   body="Thank you for your purchase."
                   isOpen={isOpenOrder}
                 />
-              </Col>
-            </Row>
+              </Fragment>
+            )}
+
+            {!isSubmit && (
+              <Row>
+                <Col>
+                  <button
+                    className="list-cart__offcanvas__footer__total__btn"
+                    onClick={handleClickCheckout}
+                    disabled={isDisabledCheckout}
+                  >
+                    {isDisabledCheckout ? (
+                      <Spinner size="sm" color="light">
+                        Loading...
+                      </Spinner>
+                    ) : (
+                      <span>CHECKOUT</span>
+                    )}
+                  </button>
+                  <ModalComponent
+                    title="Order Success"
+                    body="Thank you for your purchase."
+                    isOpen={isOpenOrder}
+                  />
+                </Col>
+              </Row>
+            )}
+
             <Row>
               <Col>
                 <button
