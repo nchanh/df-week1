@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.scss';
 import Images from '../../../assets/images';
 import NavbarItems from '../NavbarItems';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useViewport } from '../../../hooks';
 import { isWidthMobile } from '../../../helpers/function';
 
@@ -20,7 +20,8 @@ let headerLast = [
 ];
 
 function Header(props) {
-  const user = useSelector((state) => state.auth.auth);
+  // const user = useSelector((state) => state.auth.auth);
+  const user = {};
   const location = useLocation();
 
   const viewPort = useViewport();
