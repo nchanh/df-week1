@@ -2,7 +2,7 @@ const initialState = {
   auth: { token: '', username: '' },
 };
 
-const productReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_AUTH':
       return {
@@ -21,4 +21,4 @@ const productReducer = (state = initialState, action) => {
   }
 };
 
-export default productReducer;
+export default authReducer;
